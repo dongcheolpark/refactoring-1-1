@@ -5,10 +5,8 @@ export function statement(invoice, plays) {
 	const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })
 		.format;
 
-	for (let perf of invoice.performances) {
-		const play = plays[perf.playID];
+	const amountFor = (perf, play) => {
 		let thisAmount = 0;
-
 		switch (play.type) {
 			case 'tragedy':
 				thisAmount = 40000;
@@ -29,6 +27,12 @@ export function statement(invoice, plays) {
 			default:
 				throw new Error(`알 수 없는 장르: ${play.type}`);
 		}
+		return thisAmount
+	}
+
+	for (let perf of invoice.performances) {
+		const play = plays[perf.playID];
+		let thisAmount = amountFor(perf, play);
 
 		// 포인트를 적립한다.
 		volumeCredits += Math.max(perf.audience - 30, 0);
