@@ -5,6 +5,10 @@ export function statement(invoice, plays) {
 	const format = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })
 		.format;
 
+	const playFor = (aPerformance) => {
+		return plays[aPerformance.playID];
+	}
+
 	const amountFor = (aPerformance, play) => {
 		let result = 0;
 		switch (play.type) {
@@ -31,7 +35,7 @@ export function statement(invoice, plays) {
 	}
 
 	for (let perf of invoice.performances) {
-		const play = plays[perf.playID];
+		const play = playFor(perf);
 		let thisAmount = amountFor(perf, play);
 
 		// 포인트를 적립한다.
