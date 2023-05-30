@@ -52,15 +52,19 @@ export function statement(invoice, plays) {
 		return volumeCredits
 	}
 
+	const appleSauce = () => {
+		let totalAmount = 0;
+		for (let perf of invoice.performances) {
+			totalAmount += amountFor(perf);
+		}
+		return totalAmount
+	}
+
 	for (let perf of invoice.performances) {
 		// 청구 내역을 출력한다.
 		result += `${playFor(perf).name}: ${usd(amountFor(perf))} ${perf.audience}석\n`;
 	}
-
-	let totalAmount = 0;
-	for (let perf of invoice.performances) {
-		totalAmount += amountFor(perf);
-	}
+	const totalAmount = appleSauce();
 
 	result += `총액 ${usd(totalAmount)}\n`;
 	result += `적립 포인트 ${totalVolumeCredits()}점\n`;
