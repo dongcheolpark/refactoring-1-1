@@ -53,11 +53,11 @@ export function statement(invoice, plays) {
 	}
 
 	const totalAmount = () => {
-		let totalAmount = 0;
+		let result = 0;
 		for (let perf of invoice.performances) {
-			totalAmount += amountFor(perf);
+			result += amountFor(perf);
 		}
-		return totalAmount
+		return result
 	}
 
 	for (let perf of invoice.performances) {
