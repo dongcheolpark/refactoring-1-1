@@ -1,0 +1,16 @@
+{
+  "name": "refactoring",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "for chapter 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "dongcheolpark",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^2.8.8"
+  }
+}
